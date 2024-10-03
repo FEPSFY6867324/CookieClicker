@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <div class="header">
+        <img src="WebBanner2024.png" alt="Banner" width="200" height="50">
+        <h5>URN 6867324</h5>
+    </div>
+
+</head>
+<body>
+    <h1>Cookie Clicker</h1>
+    <div class="cookie" id="cookie">🍪</div>
+    <h2>Cookies: <span id="cookieCount">0</span></h2>
+    <button id="upgradeButton">Buy Upgrade (Cost: 10 cookies)</button>
+    <h2>Cookies per second: <span id="cookiesPerSecond">0</span></h2>
+
+    <script>
+        let cookieCount = 0;
+        let cookiesPerSecond = 0;
+
+        const cookieElement = document.getElementById('cookie');
+        const cookieCountElement = document.getElementById('cookieCount');
+        const upgradeButton = document.getElementById('upgradeButton');
+        const cookiesPerSecondElement = document.getElementById('cookiesPerSecond');
+
+        cookieElement.addEventListener('click', () => {
+            cookieCount++;
+            updateDisplay();
+        });
+
+        upgradeButton.addEventListener('click', () => {
+            if (cookieCount >= 10) {
+                cookieCount -= 10;
+                cookiesPerSecond++;
+                updateDisplay();
+            } else {
+                alert("Not enough cookies!");
+            }
+        });
+
+        function updateDisplay() {
+            cookieCountElement.textContent = cookieCount;
+            cookiesPerSecondElement.textContent = cookiesPerSecond;
+        }
+
+        setInterval(() => {
+            cookieCount += cookiesPerSecond;
+            updateDisplay();
+        }, 1000);
+    </script>
+</body>
+</html>
